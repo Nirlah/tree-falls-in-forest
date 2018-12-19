@@ -218,7 +218,9 @@ class Brush {
       noStroke();
       fill(255);
       ellipse(this.lastX, this.lastY, 20);
-      image(otherIcons[this.color + this.icon], this.lastX - 6, this.lastY - 6, 12, 12);
+      if (otherIcons[this.color + this.icon]) {
+        image(otherIcons[this.color + this.icon], this.lastX - 6, this.lastY - 6, 12, 12);
+      }
     }
   }
 
