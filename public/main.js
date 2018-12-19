@@ -192,7 +192,7 @@ class Brush {
       beginShape();
       vertex(ps[1].currentX, ps[1].currentY);
       vertex(ps[3].currentX, ps[3].currentY);
-      vertex(ps[5].currentX, ps[5].currentY);
+      vertex(ps[1].currentX, ps[1].currentY);
       vertex(ps[5].currentX, ps[5].currentY);
       endShape();
 
