@@ -1,0 +1,10 @@
+{
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "spellright.language": [],
+  "spellright.documentTypes": [
+    "markdown",
+    "latex",
+    "plaintext"
+  ]
+}

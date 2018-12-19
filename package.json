@@ -1,0 +1,12 @@
+{
+  "name": "assignment-5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sync": "rsync -razP ./ root@138.197.191.90:/var/www"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}
