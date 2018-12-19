@@ -39,10 +39,12 @@ function setup() {
 
   socket = io.connect(window.location.href);
 
+  // On connection
   socket.on('color', d => {
     myColor = d;
   });
 
+  // On new particle
   socket.on('circle', d => {
     let brush;
     brush = brushes[d.color];
@@ -57,6 +59,14 @@ function setup() {
 function draw() {
   background(255);
 
+  tickInteraction();
+
+  drawBrushes();
+  drawCursor();
+  drawText();
+}
+
+function tickInteraction() {
   if (frameCount % 2 === 0) { // We don't want to draw too much point
     // Did I move since last draw?
     if (mouseX != lastDraw[0] || mouseY != lastDraw[1]) {
@@ -87,21 +97,21 @@ function draw() {
     shouldStopAudio = false;
     audio.stop();
   }
+}
 
-  // Brushes
+function drawBrushes() {
   const bs = Object.values(brushes);
   bs.forEach(b => b.tick());
   const shoudlKill = bs.filter(b => b.shoudlKill);
   shoudlKill.forEach(b => {
     delete brushes[b.color];
   })
+}
 
-  // Cursor
+function drawCursor() {
   fill(myColor);
   noStroke();
   ellipse(mouseX, mouseY, 3);
-
-  drawText();
 }
 
 function drawText() {
@@ -192,8 +202,8 @@ class Brush {
       beginShape();
       vertex(ps[1].currentX, ps[1].currentY);
       vertex(ps[3].currentX, ps[3].currentY);
-      vertex(ps[1].currentX, ps[1].currentY);
       vertex(ps[5].currentX, ps[5].currentY);
+      vertex(ps[1].currentX, ps[1].currentY);
       endShape();
 
       if (age < THIRD_LIFESPAN / 2) {
@@ -220,7 +230,6 @@ class Brush {
 }
 
 class Particle {
-
   constructor(x, y) {
     this.startX = floor(x + random(-START_RADIUS, START_RADIUS));
     this.startY = floor(y + random(-START_RADIUS, START_RADIUS));
